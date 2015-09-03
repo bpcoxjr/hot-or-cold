@@ -44,56 +44,48 @@ else {
 });
 
 
-	var compareNumNew;
-	var compareNumOld = 99999;
+	var lastGuess;
 
 	function hotorcold(guess) {
-		
-		if (guess <= 100) {
-			$('#guessList').append("<li>" + guess + "</li>");
-			console.log(guess);
-			compareNumOld = compareNumNew;
-			compareNumNew = guess;
+		if (guess > 100) return;
+        
+		$('#guessList').append("<li>" + guess + "</li>");
+		console.log(guess);
 
-			var compareNum = Math.abs(guess - randomNum);
-			console.log(compareNum);
-			//Cold & warm logic	
-			if (compareNum >= 50) {
-				$('#feedback').html("<h2>" + "Ice cold!" + "</h2>");
-			}
-
-			else if (compareNum >= 30 && compareNum < 50) {
-				$('#feedback').html("<h2>" + "Pretty cold!" + "</h2>");
-			}
-
-			else if (compareNum >= 20 && compareNum <30) {
-				$('#feedback').html("<h2>" + "Warm-ish!" + "</h2>");
-			}
-
-			else if (compareNum >= 10 && compareNum < 20) {
-				$('#feedback').html("<j2>" + "Warm!" + "</h2>");
-			}
-
-			else if (compareNum > 1 && compareNum <= 10) {
-				$('#feedback').html("<h2>" + "Hot!" + "</h2>");
-			}
-			else if (guess == randomNum) {
-				$('#feedback').html("<h2>" + "You got it!" + "</h2>");
-			}
-			//Colder & warmer logic
-			if (compareNumOld !== 99999) {
-			
-			//alert(compareNumOld);
-			//alert(compareNumNew - guess);
-				if ((compareNumNew - guess) > (compareNumOld - guess)) {
-					$('#feedback').append("<h3>" + "You're getting warmer!" + "</h3>");
-				}
-				else {
-					$('#feedback').append("<h3>" + "You're getting colder!" + "</h3>");
-				}
-			}
+		var compareNum = Math.abs(guess - randomNum);
+		console.log(compareNum);
+		//Cold & warm logic	
+		if (compareNum >= 50) {
+			$('#feedback').html("<h2>" + "Ice cold!" + "</h2>");
 		}
-		
+
+		else if (compareNum >= 30) {
+			$('#feedback').html("<h2>" + "Pretty cold!" + "</h2>");
+		}
+
+		else if (compareNum >= 20) {
+			$('#feedback').html("<h2>" + "Warm-ish!" + "</h2>");
+		}
+
+		else if (compareNum >= 10) {
+			$('#feedback').html("<j2>" + "Warm!" + "</h2>");
+		}
+
+		else if (compareNum > 1) {
+			$('#feedback').html("<h2>" + "Hot!" + "</h2>");
+		}
+		else if (guess == randomNum) {
+			$('#feedback').html("<h2>" + "You got it!" + "</h2>");
+		}
+		//Colder & warmer logic
+		if ((lastGuess - guess) < 0) {
+			$('#feedback').append("<h3>" + "You're getting warmer!" + "</h3>");
+		}
+		else {
+			$('#feedback').append("<h3>" + "You're getting colder!" + "</h3>");
+		}
+        
+        lastGuess = guess;
 	};
 
 	$('.new').click(function(){
