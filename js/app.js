@@ -77,26 +77,30 @@ $(document).ready(function(){
 			}
 			else if (guess == randomNum) {
 				$('#feedback h2').text("You got it!");
-				$('#feedback h3').text('');
+				$('#feedback h3').text("");
 			}
 
 			//Colder & warmer logic
 		if(lastGuess !== undefined) { //second guess onward
 			if ((lastGuess - guess) < 0) {
-				$('#feedback h3').text("But you're getting warmer!");
+				$('#feedback h3').text("You're getting warmer!");
+			}
+			else if ((lastGuess - guess) == 0) {
+				alert("You just guessed that! Try again!");
+				$('.user-input').val ("");
 			}
 			else { 
-				$('#feedback h3').text("But you're getting colder!");
+				$('#feedback h3').text("You're getting colder!");
 			}
 		} else { //first guess
-				$('#feedback h3').text("Not bad for a first guess!");
+				$('#feedback h3').text("");
 			}
 
 			$('#feedback h3').show();
 
 		lastGuess = guess;
 	};
-
+	//game reset function
 	$('.new').click(function(){
 		location.reload();
 	});
