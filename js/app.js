@@ -3,7 +3,7 @@ $(document).ready(function(){
 //First, generate a random number between 1 and 100
 
 var randomNum = Math.ceil(Math.random() * 100);
-console.log(randomNum);
+console.log('randomNum: ' + randomNum);
 	
 
 	/*--- Display information modal box ---*/
@@ -44,56 +44,55 @@ else {
 });
 
 
-	var compareNumNew;
-	var compareNumOld = 99999;
+	var lastGuess;
 
 	function hotorcold(guess) {
-		
-		if (guess <= 100) {
-			$('#guessList').append("<li>" + guess + "</li>");
-			console.log(guess);
-			compareNumOld = compareNumNew;
-			compareNumNew = guess;
+		if (guess > 100) return;
+        
+		$('#guessList').append("<li>" + guess + "</li>");
+		console.log(guess);
 
-			var compareNum = Math.abs(guess - randomNum);
-			console.log(compareNum);
-			//Cold & warm logic	
-			if (compareNum >= 50) {
-				$('#feedback').html("<h2>" + "Ice cold!" + "</h2>");
-			}
-
-			else if (compareNum >= 30 && compareNum < 50) {
-				$('#feedback').html("<h2>" + "Pretty cold!" + "</h2>");
-			}
-
-			else if (compareNum >= 20 && compareNum <30) {
-				$('#feedback').html("<h2>" + "Warm-ish!" + "</h2>");
-			}
-
-			else if (compareNum >= 10 && compareNum < 20) {
-				$('#feedback').html("<j2>" + "Warm!" + "</h2>");
-			}
-
-			else if (compareNum > 1 && compareNum <= 10) {
-				$('#feedback').html("<h2>" + "Hot!" + "</h2>");
-			}
-			else if (guess == randomNum) {
-				$('#feedback').html("<h2>" + "You got it!" + "</h2>");
-			}
-			//Colder & warmer logic
-			if (compareNumOld !== 99999) {
-			
-			//alert(compareNumOld);
-			//alert(compareNumNew - guess);
-				if ((compareNumNew - guess) > (compareNumOld - guess)) {
-					$('#feedback').append("<h3>" + "You're getting warmer!" + "</h3>");
-				}
-				else {
-					$('#feedback').append("<h3>" + "You're getting colder!" + "</h3>");
-				}
-			}
+		var compareNum = Math.abs(guess - randomNum);
+		console.log(compareNum);
+		//Cold & warm logic	
+		if (compareNum >= 50) {
+			$('#feedback h2').text("Ice cold!");
 		}
-		
+
+		else if (compareNum >= 30) {
+			$('#feedback h2').text("Pretty cold!");
+		}
+
+		else if (compareNum >= 20) {
+			$('#feedback h2').text("Warm-ish!");
+		}
+
+		else if (compareNum >= 10) {
+			$('#feedback h2').text("Warm!");
+		}
+
+		else if (compareNum > 1) {
+			$('#feedback h2').text("Hot!");
+		}
+		else if (guess == randomNum) {
+			$('#feedback h2').text("You got it!");
+            $('#feedback h3').text('');
+		}
+        
+        if(lastGuess !== undefined) { // second or following time
+    		if ((lastGuess - guess) < 0) {
+    			$('#feedback h3').text("You're getting warmer!");
+    		}
+    		else {
+    			$('#feedback h3').text("You're getting colder!");
+    		}
+        } else { // first time
+            $('#feedback h3').text("Not bad for a first guess!");
+        }
+		//Colder & warmer logic
+		$('#feedback h3').show();
+        
+        lastGuess = guess;
 	};
 
 	$('.new').click(function(){
