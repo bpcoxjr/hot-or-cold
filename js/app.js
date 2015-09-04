@@ -2,14 +2,9 @@
 $(document).ready(function(){
 	//First, generate a random number between 1 and 100
 
-<<<<<<< HEAD
+
 	var randomNum = Math.ceil(Math.random() * 100);
 	console.log('randomNum: ' + randomNum);
-=======
-var randomNum = Math.ceil(Math.random() * 100);
-console.log('randomNum: ' + randomNum);
->>>>>>> d82408886c94b080be126f79a2aa9a72ebb6bb5c
-	
 
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
@@ -52,7 +47,6 @@ console.log('randomNum: ' + randomNum);
 	var lastGuess;
 
 	function hotorcold(guess) {
-<<<<<<< HEAD
 		
 		if (guess > 100) return;
 			$('#guessList').append("<li>" + guess + "</li>");
@@ -101,7 +95,7 @@ console.log('randomNum: ' + randomNum);
 			$('#feedback h3').show();
 
 		lastGuess = guess;
-=======
+
 		if (guess > 100) return;
         
 		$('#guessList').append("<li>" + guess + "</li>");
@@ -131,7 +125,7 @@ console.log('randomNum: ' + randomNum);
 		}
 		else if (guess == randomNum) {
 			$('#feedback h2').text("You got it!");
-            $('#feedback h3').text('');
+            $('#feedback h3').text("Awesome!");
 		}
         
         if(lastGuess !== undefined) { // second or following time
@@ -148,7 +142,6 @@ console.log('randomNum: ' + randomNum);
 		$('#feedback h3').show();
         
         lastGuess = guess;
->>>>>>> d82408886c94b080be126f79a2aa9a72ebb6bb5c
 	};
 
 	$('.new').click(function(){
