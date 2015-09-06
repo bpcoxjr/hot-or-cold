@@ -80,19 +80,25 @@ $(document).ready(function(){
 				$('#feedback h3').text("");
 			}
 
-			//Colder & warmer logic
+				//Colder & warmer logic
 		if(lastGuess !== undefined) { //second guess onward
-			if ((lastGuess - guess) < 0) {
-				$('#feedback h3').text("You're getting warmer!");
-			}
-			else if ((lastGuess - guess) == 0) {
+			var currentGuessDistance = compareNum; //just a pointer variable to make this more legible.
+			var lastGuessDistance = Math.abs(lastGuess-randomNum);
+			console.log('guess: ' + guess);
+			console.log('lastGuess: ' + lastGuess);
+			console.log('lastGuessDistance ' + lastGuessDistance);
+			console.log('currentGuessDistance ' + currentGuessDistance);
+			if (lastGuess === guess) {
 				alert("You just guessed that! Try again!");
 				$('.user-input').val ("");
+			}
+			else if (currentGuessDistance < lastGuessDistance) {
+				$('#feedback h3').text("You're getting warmer!");
 			}
 			else { 
 				$('#feedback h3').text("You're getting colder!");
 			}
-		} else { //first guess
+		} else { //first guess 
 				$('#feedback h3').text("");
 			}
 
