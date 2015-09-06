@@ -83,8 +83,7 @@ $(document).ready(function(){
 
 				//Colder & warmer logic
 		if(lastGuess !== undefined) { //second guess onward
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 			var currentGuessDistance = compareNum; //just a pointer variable to make this more legible.
 			var lastGuessDistance = Math.abs(lastGuess-randomNum);
 			console.log('guess: ' + guess);
@@ -95,9 +94,7 @@ $(document).ready(function(){
 				alert("You just guessed that! Try again!");
 				$('.user-input').val ("");
 			}
-=======
-=======
->>>>>>> eab04a18545f11bfa6cb6517d5bc2266d8ffd1ab
+
             var currentGuessDistance = compareNum; // just a pointer variable to make things more legible. could just use compareNum instead
             var lastGuessDistance = Math.abs(lastGuess - randomNum);
             console.log('guess: ' + guess);
@@ -108,10 +105,6 @@ $(document).ready(function(){
     			alert("You just guessed that! Try again!");
     			$('.user-input').val ("");
             }
-<<<<<<< HEAD
->>>>>>> eab04a18545f11bfa6cb6517d5bc2266d8ffd1ab
-=======
->>>>>>> eab04a18545f11bfa6cb6517d5bc2266d8ffd1ab
 			else if (currentGuessDistance < lastGuessDistance) {
 				$('#feedback h3').text("You're getting warmer!");
 			}
